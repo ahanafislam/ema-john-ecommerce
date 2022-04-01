@@ -8,7 +8,7 @@ import Inventory from './components/Inventory/Inventory';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Header></Header>
       <Routes>
         <Route path='/' element={<Shop></Shop>}></Route>
