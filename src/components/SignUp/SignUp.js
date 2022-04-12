@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import auth from "../../firebase.init";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -23,12 +23,6 @@ const SignUp = () => {
         setConfirmPassword(event.target.value);
     }
 
-    // Redirect to shop page after signup
-    
-    if(user){
-        navigate("/shop");
-    }
-
     const handleCreateUser = event => {
         event.preventDefault();
         if(password !== confirmPassword) {
@@ -42,6 +36,13 @@ const SignUp = () => {
 
         createUserWithEmailAndPassword(email, password);
     }
+
+    // Redirect to shop page after signup
+    useEffect(() => {
+        if(user) {
+            navigate("/shop");
+        }
+    },[user,navigate]);
 
     return (
         <div className='form-container'>
@@ -58,7 +59,7 @@ const SignUp = () => {
                     </div>
                     <div className="input-group">
                         <label htmlFor="confirm-password">Confirm Password</label>
-                        <input onBlur={handleConfirmPasswordBlur} type="password" name="confirm-password" id="" />
+                        <input onBlur={handleConfirmPasswordBlur} type="password" name="confirm-password" id="" required/>
                     </div>
                     <p style={{color: 'red'}}>{error}</p>
                     <input className='form-submit' type="submit" value="Sign Up"/>

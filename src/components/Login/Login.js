@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -26,9 +26,11 @@ const Login = () => {
     }
 
     // Redirect to shop page after login
-    if(user) {
-        navigate(from, { replace: true });
-    }
+    useEffect(() => {
+        if(user) {
+            navigate(from, { replace: true })
+        }
+    },[user, from, navigate]);
 
     const handleUserSignIn = event => {
         event.preventDefault();

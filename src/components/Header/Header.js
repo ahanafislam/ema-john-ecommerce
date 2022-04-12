@@ -10,8 +10,9 @@ const Header = () => {
     const [user] = useAuthState(auth);
     
     const handleSignOut = () => {
-        signOut(auth);
+        signOut(auth)
     }
+
     return (
         <nav className="header">
            <img src={logo} alt="Site's Logo" />

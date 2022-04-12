@@ -18,7 +18,6 @@ function App() {
         <Route path='/' element={<Shop></Shop>}></Route>
         <Route path='/shop' element={<Shop></Shop>}></Route>
         <Route path='/orders' element={<Orders></Orders>}></Route>
-        <Route path='/about' element={<About></About>}></Route>
         <Route path='/inventory' element={
           <RequireAuth>
             <Inventory></Inventory>
@@ -29,6 +28,7 @@ function App() {
             <Shipment></Shipment>
           </RequireAuth>
         }></Route>
+        <Route path='/about' element={<About></About>}></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUp></SignUp>}></Route>
       </Routes>
