@@ -46,41 +46,44 @@ const Shop = () => {
     }
 
     return (
-    <div className='shop-container'>
-        <div className="products-container">
-            {
-                products.map(product =>
-                    <Product
-                        key={product._id}
-                        product={product}
-                        handleAddToCart = {handleAddToCart}
-                    ></Product>)
-            }
-        {/* Start Pagination */}
-        <div className="pagination">
-            {
-                [...Array(pageCount).keys()].map( number => <button
-                    className={page=== number ? 'selected' : ''}
-                    onClick={() => setPage(number)}
-                >{number + 1}</button>)
-            }
-            <select onChange={e => setSize(e.target.value)}>
-                <option value="5">5</option>
-                <option value="10" selected>10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
-            </select>
-        </div>
-        {/* End Pagination */}
-        </div>
-        <div className="cart-container">
-            <Cart cart={cart}>
-                <Link to="/orders">
-                    <button>Review Order</button>
-                </Link>
-            </Cart>
-        </div>
-    </div>
+        <>
+            <div className='shop-container'>
+                <div className="products-container">
+                    {
+                        products.map(product =>
+                            <Product
+                                key={product._id}
+                                product={product}
+                                handleAddToCart = {handleAddToCart}
+                            ></Product>)
+                    }
+                </div>
+                <div className="cart-container">
+                    <Cart cart={cart}>
+                        <Link to="/orders">
+                            <button>Review Order</button>
+                        </Link>
+                    </Cart>
+                </div>
+            </div>
+            {/* Start Pagination */}
+            <div className="pagination">
+                {
+                    [...Array(pageCount).keys()].map( number => <button
+                        key={number}
+                        className={page=== number ? 'selected' : ''}
+                        onClick={() => setPage(number)}
+                    >{number + 1}</button>)
+                }
+                <select defaultValue={size} onChange={e => setSize(e.target.value)}>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+            {/* End Pagination */}
+        </>
     );
 };
 
